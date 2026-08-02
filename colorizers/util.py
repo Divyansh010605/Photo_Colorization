@@ -3,7 +3,6 @@ import numpy as np
 from skimage import color
 import torch
 import torch.nn.functional as F
-from IPython import embed
 
 
 def load_img(img_path):
@@ -42,7 +41,7 @@ def postprocess_tens(tens_orig_l, out_ab, mode="bilinear"):
 
     # call resize function if needed
     if HW_orig[0] != HW[0] or HW_orig[1] != HW[1]:
-        out_ab_orig = F.interpolate(out_ab, size=HW_orig, mode="bilinear")
+        out_ab_orig = F.interpolate(out_ab, size=HW_orig, mode="bilinear", align_corners=False)
     else:
         out_ab_orig = out_ab
 
